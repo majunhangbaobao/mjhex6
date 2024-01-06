@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body{
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: rgba(255, 190, 211, .5);
+			}
+			img{
+				display: block;
+			}
+			#main{
+				width: 500px;
+				box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+				position: relative;
+				overflow: hidden;
+			}
+			#mirror{
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				border: 5px solid #fff;
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			#mirror img{
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<p style="position: absolute; left: 30%; top: 5%; font-size: 20px;text-align: center"><strong>机器狗还能做什么？有网友说：“绳子一牵，机器狗做成导盲犬不错。”<br /></strong>在未来，随着四足仿生机器人的发展，需求一定会大大提高<br />尤其是在人类不便操作的复杂环境下，四足仿生机器人能更好的发挥作用。<br /></p>
+		<div id="main">
+				<img src="https://majunhangbaobao.github.io/mjh225701219/机器狗/机器狗.png" width="100%">
+			<div id="mirror">
+				<img src="https://majunhangbaobao.github.io/mjh225701219/机器狗/机器狗.png">
+			</div>
+		</div>
+		
+		<script>
+			let oMain = document.querySelector('#main');
+			let oMirror = document.querySelector('#mirror');
+			let oBigimg = document.querySelector('#mirror img');
+			
+			oMain.addEventListener('mousemove',e => {
+				let x_left = e.clientX - oMain.offsetLeft;
+				let y_top = e.clientY - oMain.offsetTop;
+				
+				oMirror.style.left = x_left - oMirror.offsetWidth / 2 + 'px';
+				oMirror.style.top = y_top - oMirror.offsetHeight / 2 + 'px';
+				
+				let  bigImgLeft = oBigimg.offsetWidth / oMain.offsetWidth * x_left - oMirror.offsetWidth / 2;
+				let  bigImgTop = oBigimg.offsetHeight / oMain.offsetHeight * y_top - oMirror.offsetHeight / 2;
+				
+				oBigimg.style.left = -bigImgLeft + 'px';
+				oBigimg.style.top = -bigImgTop + 'px';
+			});
+		</script>
+	</body>
+</html>
